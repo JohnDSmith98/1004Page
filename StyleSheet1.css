@@ -1,0 +1,78 @@
+﻿h1 {
+    Font-size: 64pt;
+    background-color: blue;
+    text-align: center;
+    color: white;
+}
+
+h2 {
+    font-size: 28pt;
+    color: white;
+    text-align: center;
+}
+
+body {
+    background-color: grey;
+}
+
+submit:hover {
+    color: red;
+}
+
+h3 {
+    color: blue;
+    font-size: 28pt;
+    text-align: center;
+}
+
+a:hover {
+    color: red;
+}
+
+a:visited {
+    color: blue;
+}
+
+BoxSizer {
+    width: 300px;
+    height: 150px;
+}
+
+.center {
+    text-align: center;
+}
+
+.sidebar {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+    .sidebar a {
+        padding: 100px 12px 30px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+    }
+
+.main {
+    margin-left: 160px;
+    padding: 0px 10px;
+}
+
+tr:nth-child(even) {
+    background-color: lime;
+}
+
+td, table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-bottom: 1px solid black;
+}
