@@ -7,29 +7,29 @@
     <link href="StyleSheet1.css" rel="stylesheet" />
     <title>Password Storage and Generator </title>
     <style>
-    #ActualPage {
-        display:none;
-    }
+        #ActualPage {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
     <div id="login">
-    <h1><i class="fa-solid fa-lock"> </i> Password Storage and Generator <i class="fa-solid fa-lock"></i></h1> <!-- Needs styling with css h1, ideally a navy background-->
-    <h2>Please enter your username and password:</h2>
-    <form>
-        <!-- Form for logging in to the page -->
-        <!-- Need a "form action" line here to make the log in -->
-        <h2><label for "Username">Username:</label> </h2>
-        <div class="center"> <input type="text" id="Username" name="Username"> </div>
-        <h2><label for "Password">Password:</label></h2>
-        <div class="center"> <input type="text" id="Password" name="Password"> <br> </div>
-        <br> <br> <br>
-        <div class="center"> <button class="submit">Submit</button> </div>
-        <h6><a href="">Don't have an account?</h6>
-        <h6><a href="">Forgot your password?</h6>
-    </form>
-        </div>
+        <h1><i class="fa-solid fa-lock"> </i> Password Storage and Generator <i class="fa-solid fa-lock"></i></h1> <!-- Needs styling with css h1, ideally a navy background-->
+        <h2>Please enter your username and password:</h2>
+        <form>
+            <!-- Form for logging in to the page -->
+            <!-- Need a "form action" line here to make the log in -->
+            <h2><label for "Username">Username:</label> </h2>
+            <div class="center"> <input type="text" id="Username" name="Username"> </div>
+            <h2><label for "Password">Password:</label></h2>
+            <div class="center"> <input type="text" id="Password" name="Password"> <br> </div>
+            <br> <br> <br>
+            <div class="center"> <button onclick="login()">Submit</button> </div>
+            <h6><a href="">Don't have an account?</h6>
+            <h6><a href="">Forgot your password?</h6>
+        </form>
+    </div>
     <div id="ActualPage">
         <div class="sidebar">
             <h5>Go to:</h5>
@@ -88,5 +88,23 @@
         </div>
     </div>
 </body>
+<script>
+
+function login() {
+    var username = document.getElementById("Username").value;
+    var password = document.getElementById("Password").value;
+
+    // PLACEHOLDERS
+    var validUsername = "Steve11";
+    var validPassword = "tory12";
+
+    if (username === validUsername && password === validPassword) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("ActualPage").style.display = "block";
+    } else {
+        alert("Invalid username or password.");
+    }
+}
+</script>
 
 </html>
