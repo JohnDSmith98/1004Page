@@ -22,7 +22,7 @@
             <h2><label for "Username">Username:</label> </h2>
             <div class="center"> <input type="text" id="Username" name="Username"> </div>
             <h2><label for "Password">Password:</label></h2>
-            <div class="center"> <input type="text" id="Password" name="Password"> <br> </div>
+            <div class="center"> <input type="password" id="Password" name="Password"> <br> </div>
             <br> <br> <br>
             <div class="center"> <button onclick="login(event)">Submit</button> </div>
             <h6><a href="">Don't have an account?</h6>
@@ -94,7 +94,7 @@
     // PLACEHOLDERS
         var validUsername = "Steve11";
         var validPassword = "tory12";
-        var validUsername = "John";
+      //  var validUsername = "John";
     if (username === validUsername && password === validPassword) {
         document.getElementById("login").style.display = "none";
         document.getElementById("ActualPage").style.display = "block";
