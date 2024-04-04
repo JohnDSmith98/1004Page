@@ -1,9 +1,9 @@
 ﻿h1 {
     Font-size: 64pt;
-    background-color: blue;
+    background-color: darkslateblue;
     text-align: center;
     color: white;
-    font-family:monospace;
+    font-family: monospace;
 }
 
 h2 {
@@ -13,9 +13,12 @@ h2 {
 }
 
 body {
-    background-color: whitesmoke;
+    background-color: #fcfcfc;
+    opacity: 1.0;
+    background-image: radial-gradient(#4200db 1.8px, transparent 1.8px), radial-gradient(#4200db 1.8px, #fcfcfc 1.8px);
+    background-size: 72px 72px;
+    background-position: 0 0,36px 36px;
 }
-
 submit:hover {
     color: red;
 }
@@ -69,14 +72,20 @@ BoxSizer {
 }
 
 tr:nth-child(even) {
-    background-color: lime;
+    background-color: darkslateblue;
+    color: white;
 }
 
-td, table {
-    border: 1px solid black;
-    border-collapse: collapse;
-    border-bottom: 1px solid black;
+tr:nth-child(odd) {
+        background-color: white;
+        color: black;
 }
+
+    td, table {
+        border: 1px solid black;
+        border-collapse: collapse;
+        border-bottom: 1px solid black;
+    }
 
 h4 {
     font-size: 20pt;
