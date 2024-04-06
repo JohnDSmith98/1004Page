@@ -24,23 +24,24 @@
             <div class="center"> <input type="password" id="Password" name="Password"> <br> </div>
             <br> <br> <br>
             <div class="center"> <button onclick="login(event)">Submit</button> </div>
-            <h6><a href="">Don't have an account?</h6>
-            <h6><a href="">Forgot your password?</h6>
+            <!--      <h6><a href="">Don't have an account?</h6>
+                  <h6><a href="">Forgot your password?</h6> -->
         </form>
     </div>
     <div id="ActualPage">
         <div class="sidebar">
             <h5>Go to:</h5>
-            <a href="#">Storage</a>
-            <i class="fa-solid fa-address-book" style='font-size:48px;color:maroon'> </i>
-            <a href="#">Generator</a>
-            <i class="fa-solid fa-fax" style='font-size:48px;color:maroon'></i>
-            <a href="#">General Security Info</a>
+            <button class="navigation" onclick="Section(event, 'Storage')" id="DefaultSection">Storage</button>
+            <i class="fa-solid fa-address-book" style='font-size:48px;color:maroon'> </i> <br><br><br><br><br><br>
+            <button class="navigation" onclick="Section(event, 'Generator')">Generator</button>
+            <i class="fa-solid fa-fax" style='font-size:48px;color:maroon'></i><br><br><br><br><br><br>
+            <button class="navigation" onclick="Section(event, 'Information')">Info</button>
             <i class="fa-solid fa-circle-info" style='font-size:48px;color:maroon'></i>
         </div>
         <div class="main">
             <h1><i class="fa-solid fa-unlock"></i> Password Storage and Generator <i class="fa-solid fa-unlock"></i></h1>
-            <h3> Password Storage </h3>
+            <div id="Storage" class="navcontent">
+            <h3> Password Storage </h3> <br><br><br><br>
             <table style="width:50%">
                 <tr>
                     <th> Site </th>
@@ -68,10 +69,44 @@
                     <td> videos55! </td>
                 </tr>
             </table>
-            <br><br><br><br><br><br><br> <br><br><br><br><br><br><br> <br><br><br><br><br><br><br> <br><br><br><br><br><br><br> <br><br><br><br><br><br><br> <br><br><br><br><br><br><br>
-            <h2> Password Generator</h2>
-            <br><br><br><br><br><br><br><br><br><br>
+            </div>
+            <div id="Generator" class="navcontent">
+            <h2> Password Generator</h2> <br><br><br><br><br>
+            <div class="box">
+                <div class="center">
+                    <h8>Random Password Generator</h8> <br>
+                    <input type="text" name="" placeholder="Generate password here" id="generatedpassword" readonly>
+                    <table class="center">
+                        <th><div id="button" class="button" onclick="Generate()">Generate</div></th>
+                        <th><div id="button" class="button" onclick="Copy()">Copy</div></th>
+                    </table>
+                </div>
+            </div>
+            <script>
+                var generatedpass = document.getElementById("generatedpassword");
+                function Generate() {
+                    var passcharacters = "0123456789acbdefghijklmnopqrstuvwxyzABCEDFGHIJKLMNOPQRSTUVWXYZ!£$%&*()"
+                    var passlength = 15;
+                    var generatedpass = "";
+                    for (var i = 0; i <= passlength; i++) {
+                        var randomNumber = Math.floor(Math.random() * passcharacters.length);
+                        generatedpass += passcharacters.substring(randomNumber, randomNumber + 1);
+                    }
+                    document.getElementById("generatedpassword").value = generatedpass;
+                }
 
+                function Copy() {
+                    var CopyText = document.getElementById("generatedpassword");
+                    CopyText.select();
+                    document.execCommand("copy");
+                }
+            </script>
+            <h4>
+                Our password generator operates by selecting 16 random characters from a pre-selected list: (0123456789acbdefghijklmnopqrstuvwxyzABCEDFGHIJKLMNOPQRSTUVWXYZ!£$%&*() ) to create a
+                strong password.<br><br> GCF Global gives the advice that "random passwords are much stronger than simple patterns. If you're having trouble creating a new password try using a password generator" (GCF Global, 2024).
+            </h4>
+            </div>
+            <div id="Information" class="navcontent">
             <h2> General Security Information </h2>
             <h4>
                 Your account security is a crucial part of your day-to-day life in this modern age. Passwords protect much of your important information that it is vital to not have easy-to-crack
@@ -83,26 +118,44 @@
                 <br><br><br>
                 If you wish to not use our generator then please consider researching on how to make your passwords strong before choosing them.
             </h4>
+            </div>
         </div>
-    </div>
+        </div>
 </body>
-<script>
-    function login(event) {
-    var username = document.getElementById("Username").value;
-    var password = document.getElementById("Password").value;
-    // PLACEHOLDERS
-        var validUsername = "Steve11";
-        var validPassword = "tory12";
-      //  var validUsername = "John";
-    if (username === validUsername && password === validPassword) {
-        document.getElementById("login").style.display = "none";
-        document.getElementById("ActualPage").style.display = "block";
-        event.preventDefault();
-    } else {
-        alert("Invalid username or password.");
-    } 
-    }
+    <script>
+        function login(event) {
+            var username = document.getElementById("Username").value;
+            var password = document.getElementById("Password").value;
+            // PLACEHOLDERS
+            var validUsername = "Steve11";
+            var validPassword = "tory12";
+            //  var validUsername = "John";
+            if (username === validUsername && password === validPassword) {
+                document.getElementById("login").style.display = "none";
+                document.getElementById("ActualPage").style.display = "block";
+                event.preventDefault();
+                document.getElementById("DefaultSection").click();
+            } else {
+                alert("Invalid username or password.");
+            }
+        }
 
-</script>
+        function Section(event, Sec) {
+            var i, navcontent, navigation;
+
+            navcontent = document.getElementsByClassName("navcontent");
+            for (i = 0; i < navcontent.length; i++) {
+                navcontent[i].style.display = "none";
+            }
+
+            navigation = document.getElementsByClassName("navigation");
+            for (i = 0; i < navigation.length; i++) {
+                navigation[i].className = navigation[i].className.replace(" active", "");
+            }
+
+            document.getElementById(Sec).style.display = "block";
+            event.currentTarget.className += " active";
+        }
+    </script>
 
 </html>

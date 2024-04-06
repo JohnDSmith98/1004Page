@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="StyleSheet1.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="box">
+        <h8>Random Password Generator</h8> <br>
+        <input type="text" name="" placeholder="Generate password here" id="generatedpassword" readonly> 
+        <table>
+            <th><div id="button" class="button" onclick="Generate()">Generate</div></th>
+            <th><a id="button" class="button" onclick="Copy()">Copy</a></th>
+        </table>
+
+    </div>
+    <script>
+        var generatedpass = document.getElementById("generatedpassword");
+        function Generate() {
+            var passcharacters = "0123456789acbdefghijklmnopqrstuvwxyzABCEDFGHIJKLMNOPQRSTUVWXYZ!£$%&*()"
+            var passlength = 15;
+            var generatedpass = "";
+            for (var i = 0; i <= passlength; i++) {
+                var randomNumber = Math.floor(Math.random() * passcharacters.length);
+                generatedpass += passcharacters.substring(randomNumber, randomNumber + 1);
+            }
+            document.getElementById("generatedpassword").value = generatedpass;
+        }
+
+        function Copy() {
+            var CopyText = document.getElementById("generatedpassword");
+            CopyText.select();
+            document.execCommand("copy");
+        }
+    </script>
+   <h4> Our password generator operates by selecting 16 random characters from a pre-selected list: (0123456789acbdefghijklmnopqrstuvwxyzABCEDFGHIJKLMNOPQRSTUVWXYZ!£$%&*() ) to create a 
+    strong password.<br><br> GCF Global gives the advice that "random passwords are much stronger than simple patterns. If you're having trouble creating a new password try using a password generator" (GCF Global,2024).  </h4>
+
+</body>
+</html>
