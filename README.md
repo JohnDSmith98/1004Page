@@ -1,4 +1,6 @@
 COMP1004 - Computing Practice
+
+
 Project Title - Password Storage and Generator
 
 
