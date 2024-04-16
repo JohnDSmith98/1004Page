@@ -1,6 +1,6 @@
 ﻿h1 {
     Font-size: 64pt;
-    background-color: darkslateblue;
+    background-color: black;
     text-align: center;
     color: white;
     font-family: monospace;
@@ -46,7 +46,7 @@ BoxSizer {
 .center {
     text-align: center;
     margin-left: auto;
-    margin-right: auto
+    margin-right: auto;
 }
 
 .sidebar {
@@ -73,21 +73,31 @@ BoxSizer {
     padding: 0px 10px;
 }
 
+.jsontable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.jsontable th, td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: left;
+}
+
+
 tr:nth-child(even) {
     background-color: darkslateblue;
     color: white;
 }
 
 tr:nth-child(odd) {
-        background-color: white;
-        color: black;
+    background-color: white;
+    color: black;
 }
 
-    td, table {
-        border: 1px solid black;
-        border-collapse: collapse;
-        border-bottom: 1px solid black;
-    }
+.jsontable th{
+    background-color:grey;
+}
 
 h4 {
     font-size: 20pt;
@@ -112,13 +122,13 @@ h6{
 #button {
     font-family: monospace;
     font-size: 26px;
-    border: 2px solid #7100cf;
+    border: 2px solid black;
     width: 215px;
     height: 50px;
     text-align: center;
-    background-color: darkslateblue;
+    background-color: black;
     display: flex;
-    color: white;
+    color: grey;
     justify-content: center;
     align-items: center;
     cursor: pointer;
@@ -127,24 +137,24 @@ h6{
     
 #button:hover {
         color: white;
-        background-color: black;
+        background-color: darkslateblue;
     }
 h8 {
     margin-bottom: 40px;
     text-align: center;
     font-size: 26px;
-    color: darkslateblue;
+    color: black;
     font-family: monospace;
 }
 input {
     padding: 20px;
     user-select: none;
-    height: 50px;
-    width: 400px;
-    border-radius: 12px;
-    border: 2px solid #8d0cf7;
-    font-size: 26px;
+    height: 15px;
+    width: 310px;
     text-align: center;
+    border-radius: 12px;
+    border: 2px solid black;
+    font-size: 26px;
 }
 .sidebar button {
     padding: 25px 12px 30px;
@@ -164,4 +174,9 @@ input {
     font-size: 28pt;
     text-align: left;
     text-decoration: underline;
+}
+#inputfile{
+    height: auto;
+    width: auto;
+    background-color: white;
 }
