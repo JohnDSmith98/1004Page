@@ -3,112 +3,190 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <script src="https://kit.fontawesome.com/6fe2fcb815.js" crossorigin="anonymous"></script>
-    <link href="StyleSheet1.css" rel="stylesheet" />
-    <title>Password Storage and Generator </title>
+    <script>
+        { 
+            data = []; //Globally initialising data
+        }
+    </script>
+    <script src="https://kit.fontawesome.com/6fe2fcb815.js" crossorigin="anonymous"></script> <!-- This is so that the FontAwesome icons display correctly -->
+    <link href="StyleSheet1.css" rel="stylesheet" /> <!-- Linking the stylesheet -->
+    <title>Password Storage and Generator </title> <!-- Standard page title -->
     <style>
-      #ActualPage {
+        #ActualPage {
             display: none;
         }
-    </style> 
+    </style> <!-- Above is setting all of the main content of the page hidden behind log in screen by default -->
 </head>
 
 <body>
-    <div id="login">
-        <h1><i class="fa-solid fa-lock"> </i> Password Storage and Generator <i class="fa-solid fa-lock"></i></h1>
+    <div id="login"> <!-- This section is shown on page opening and then hidden after successful log in -->
+        <h1><i class="fa-solid fa-lock"> </i> Password Storage and Generator <i class="fa-solid fa-lock"></i></h1> <!-- Making use of the awesomefont icons-->
         <h2>Please enter your username and password:</h2>
         <form>
             <h2><label for "Username">Username:</label> </h2>
-            <div class="center"> <input type="text" id="Username" name="Username"> </div>
+            <div class="center"> <input type="text" id="Username" name="Username"> </div> <!-- input box for log in where user can put the username -->
             <h2><label for "Password">Password:</label></h2>
-            <div class="center"> <input type="password" id="Password" name="Password"> <br> </div>
+            <div class="center"> <input type="password" id="Password" name="Password"> <br> </div> <!-- input box for log in where user can put the password -->
             <br> <br> <br>
-            <div class="center"> <button onclick="login(event)">Submit</button> </div>
-            <!--      <h6><a href="">Don't have an account?</h6>
-                  <h6><a href="">Forgot your password?</h6> -->
+            <div class="center"> <button onclick="login(event)">Submit</button> </div> <!-- Button which actives the 'login' function -->
         </form>
     </div>
     <div id="ActualPage">
-        <div class="sidebar">
+        <div class="sidebar"> <!-- Sidebar permantly fixed across all section after log in -->
             <h5>Go to:</h5>
-            <button class="navigation" onclick="Section(event, 'Storage')" id="DefaultSection">Storage</button>
-            <i class="fa-solid fa-address-book" style='font-size:48px;color:maroon'> </i> <br><br><br><br><br><br>
-            <button class="navigation" onclick="Section(event, 'Generator')">Generator</button>
-            <i class="fa-solid fa-fax" style='font-size:48px;color:maroon'></i><br><br><br><br><br><br>
-            <button class="navigation" onclick="Section(event, 'Information')">Info</button>
-            <i class="fa-solid fa-circle-info" style='font-size:48px;color:maroon'></i>
+            <button class="navigation" onclick="Section(event, 'Storage')" id="DefaultSection">Storage</button> <!-- Button for naviagtion function -->
+            <i class="fa-solid fa-address-book" style='font-size:48px;color:maroon'> </i> <br><br><br><br><br><br> <!-- Using an awesomefont icon and applying styling direct -->
+            <button class="navigation" onclick="Section(event, 'Generator')">Generator</button> <!-- Button for naviagtion function -->
+            <i class="fa-solid fa-fax" style='font-size:48px;color:maroon'></i><br><br><br><br><br><br> <!-- Using an awesomefont icon and applying styling direct -->
+            <button class="navigation" onclick="Section(event, 'Information')">Info</button> <!-- Button for naviagtion function -->
+            <i class="fa-solid fa-circle-info" style='font-size:48px;color:maroon'></i> <!-- Using an awesomefont icon and applying styling direct -->
         </div>
         <div class="main">
-            <h1><i class="fa-solid fa-unlock"></i> Password Storage and Generator <i class="fa-solid fa-unlock"></i></h1>
+            <h1><i class="fa-solid fa-unlock"></i> Password Storage and Generator <i class="fa-solid fa-unlock"></i></h1> <!-- Different awesomefont icons, unlocked pads once authenticated -->
             <div id="Storage" class="navcontent">
-            <h3> Password Storage </h3> <br><br><br><br>
-            <table style="width:50%">
-                <tr>
-                    <th> Site </th>
-                    <th>Username/email</th>
-                    <th>Password</th>
-                </tr>
-                <tr style="height: 50px">
-                    <td>Netflix</td>
-                    <td> TypicalEmail@gmail.com </td>
-                    <td> Fluffycat02 </td>
-                </tr>
-                <tr style="height: 50px">
-                    <td>Deliveroo</td>
-                    <td> TypicalEmail@gmail.com </td>
-                    <td> Shawshank44 </td>
-                </tr>
-                <tr style="height: 50px">
-                    <td> Amazon </td>
-                    <td> TypicalEmail@gmail.com </td>
-                    <td> password00 </td>
-                </tr>
-                <tr style="height: 50px">
-                    <td> YouTube </td>
-                    <td> TypicalEmail@gmail.com </td>
-                    <td> videos55! </td>
-                </tr>
-            </table>
+                <h2> Password Storage </h2> <br><br><br><br>
+                <input type="password" id="jsonpass" placeholder="Enter JSON Password"> <!-- Input box for JSON key -->
+                <input type="file" id="inputfile" accept=".json"> <!-- Only accepts JSON files -->
+                <button id="Clear">Clear</button> <!-- Clear button in place for 'clear' function -->
+                <table class="jsontable" id="jsondata">
+                    <thead>
+                        <tr>
+                            <th>Site</th> <!-- Header for site column -->
+                            <th>Username/Email</th> <!-- Header for user/email column -->
+                            <th>Password</th> <!-- Header for password column -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+                <form id="addcredentials" onsubmit="Append(event); return false;"> <!-- Credentials form for functionality with append with event listener  -->
+                    <input type="text" id="newsite" placeholder="Enter Site Name"> <!-- Input box for new Site -->
+                    <input type="text" id="newuser" placeholder="Enter Username or Email"> <!-- Input box for new User/Email -->
+                    <input type="password" id="newpassword" placeholder="Enter Password"> <!-- Input box for new Password -->
+                    <button type="submit">Submit</button> <!-- Button to submit the new credentials -->
+                </form>
+                <a id="Downloadlink" style="display: none;">Download</a>
+                <button type="button" id="save">Save</button>
+                <div class="footer"  <form class="center-block" onsubmit="return false;"> <!-- Onsubmit stops form from refreshing page. Class keeps it at the bottom -->
+
+                    <input type="text" id="strpass" autocomplete="off" class="form-control input-lg">
+
+                    <input type="text" placeholder="Your results will show here" id="strresult" readonly> <!-- Making the results read only -->
+
+                    <button id="StrButton">Show Password Strength</button>
+                </form>
+                </div>
+                <script>
+                    //JavaScript functions for the Storage section
+                    var StrPass = document.getElementById("strpass")
+                    var StrResult = document.getElementById("strresult")
+                    var StrButton = document.getElementById("StrButton")
+                    StrButton.addEventListener('click', function () {
+                        var PassStr = 0;
+                        var value = StrPass.value;
+                        if (value.length < 12) {
+                            alert("All secure passwords should have a minimum of 12 characters.") //Passwords under 12 characters not accepted
+                        }
+                        else { //Checks for certain conditions on the entered string
+                            if (value.match(/[a-z]+/)) { //If a character from a-z lowercase then +1
+                                PassStr += 1;
+                            }
+                            if (value.match(/[A-Z]+/)) { //If a character from a-z uppercase then +1
+                                PassStr += 1;
+                            }
+                            if (value.match(/[0-9]+/)) { //If a character from 0-9 then +1
+                                PassStr += 1;
+                            }
+                            if (value.match(/[^0-9a-zA-Z]+/)) { //If a special character
+                                PassStr += 1;
+                            }
+                            if (value.length >= 16) { //Bonus point for the password being 16 characters or more
+                                PassStr += 1;
+                            }
+                            document.getElementById("strresult").value = PassStr + "/5"; //Totals them up and reveals the rating /5
+                        }
+                    });
+                    document.getElementById('inputfile').addEventListener('change', function (event) {
+                        var fileReader = new FileReader();
+                        fileReader.onload = function () {
+                            try {
+                                data = JSON.parse(fileReader.result);
+                                var key = document.getElementById('jsonpass').value.trim();
+
+                                if (data[key]) {
+                                    writetable(data[key]); //Perform the write function if key within JSON file matches to the user input
+                                } else {
+                                    alert('Error: Expected key not found.'); //Standard error message with pop-up for incorrect input
+                                }
+                            } catch (e) {
+                                alert('Invalid JSON file.');
+                            }
+                        };
+                        fileReader.readAsText(event.target.files[0]);
+                    });
+
+                    function writetable(data) {
+                        var tableBody = document.getElementById('jsondata').getElementsByTagName('tbody')[0];
+                        tableBody.innerHTML = ''; //Clear
+
+                        data.forEach(function (item, index) {
+                            var row = tableBody.insertRow();
+                            var cell1 = row.insertCell(0); //Setting up the rows for display and functions
+                            var cell2 = row.insertCell(1);
+                            var cell3 = row.insertCell(2);
+                            cell1.textContent = item.Site; //Putting the 'Site' data into the first row
+                            cell2.textContent = item.UsernameorEmail; //Putting the 'Username' or 'Email' data into the second row
+                            cell3.textContent = item.Password; //Putting the 'Password' data into the third row
+                            console.log(`Row ${index + 1} added:`, item);
+                        });
+                    }
+                    document.getElementById('Clear').addEventListener('click', function () { //When 'Clear' is clicked
+                        var tableBody = document.getElementById('jsondata').getElementsByTagName('tbody')[0]; //Get JSON data within table body element
+                        tableBody.innerHTML = ''; //Setting the table content to blank
+                        document.getElementById('inputfile').value = ''; //Clearing the file selected - without this resetting the same file won't load in table if selected and cleared
+                    });
+                </script>
             </div>
             <div id="Generator" class="navcontent">
-            <h2> Password Generator</h2> <br><br><br><br><br>
+            <h2> Password Generator</h2> 
             <div class="box">
-                <div class="center">
-                    <h8>Random Password Generator</h8> <br>
-                    <input type="text" name="" placeholder="Generate password here" id="generatedpassword" readonly>
+                <div class="center">                   
+                    <input type="text" name="" placeholder="Generate password here" id="generatedpassword" readonly> <!-- Making the generation box read only and giving it the id to perform functions -->
                     <table class="center">
                         <th><div id="button" class="button" onclick="Generate()">Generate</div></th>
-                        <th><div id="button" class="button" onclick="Copy()">Copy</div></th>
+                        <th><div id="button" class="button" onclick="Copy()">Copy</div></th> 
                     </table>
                 </div>
             </div>
-            <script>
+            <script> //JavaScript functions for the Generator section
                 var generatedpass = document.getElementById("generatedpassword");
                 function Generate() {
-                    var passcharacters = "0123456789acbdefghijklmnopqrstuvwxyzABCEDFGHIJKLMNOPQRSTUVWXYZ!£$%&*()"
-                    var passlength = 15;
-                    var generatedpass = "";
-                    for (var i = 0; i <= passlength; i++) {
-                        var randomNumber = Math.floor(Math.random() * passcharacters.length);
-                        generatedpass += passcharacters.substring(randomNumber, randomNumber + 1);
+                    const passcharacters = "0123456789acbdefghijklmnopqrstuvwxyzABCEDFGHIJKLMNOPQRSTUVWXYZ!£$%&*()" //Setting the valid characters for the randomisation
+                    const passlength = 16; //Setting a password length of 16
+                    var generatedpass = ""; //Setting original value to blank
+                    for (var i = 0; i < passlength; i++) { //Loop until it reaches 16 characters
+                        var randompass = Math.floor(Math.random() * passcharacters.length); //Retrieves a random character from our passcharacters constant
+                        generatedpass += passcharacters.substring(randompass, randompass + 1); //Appends it to the end of the generation so far
                     }
-                    document.getElementById("generatedpassword").value = generatedpass;
+                    document.getElementById("generatedpassword").value = generatedpass; //Outputs the generated value into the correct box
                 }
 
                 function Copy() {
-                    var CopyText = document.getElementById("generatedpassword");
-                    CopyText.select();
-                    document.execCommand("copy");
+                    var CopyText = document.getElementById("generatedpassword"); 
+                    CopyText.select(); //Selects the text that has been generated
+                    document.execCommand("copy"); //Operates the standard 'copy' to clipboard
                 }
             </script>
             <h4>
                 Our password generator operates by selecting 16 random characters from a pre-selected list: (0123456789acbdefghijklmnopqrstuvwxyzABCEDFGHIJKLMNOPQRSTUVWXYZ!£$%&*() ) to create a
-                strong password.<br><br> GCF Global gives the advice that "random passwords are much stronger than simple patterns. If you're having trouble creating a new password try using a password generator" (GCF Global, 2024).
+                strong password.<br><br> GCF Global (2024) gives the advice that <q cite="https://edu.gcfglobal.org/en/internetsafety/creating-strong-passwords/1/"> passwords are much stronger than simple patterns. If you're having trouble creating a new password try using a password generator"</q>
+                <!-- Quote has cite so that website referenced within the HTML-->
             </h4>
             </div>
             <div id="Information" class="navcontent">
-            <h2> General Security Information </h2>
-            <h4>
+            <h2> General Security Information </h2> <!-- Brief information on security for our users -->
+            <h4> 
                 Your account security is a crucial part of your day-to-day life in this modern age. Passwords protect much of your important information that it is vital to not have easy-to-crack
                 passwords and avoid repeating passwords across different accounts.<br>
                 Using standalone password managers is one of many reccomendations made by the NCSC
@@ -122,40 +200,66 @@
         </div>
         </div>
 </body>
-    <script>
+    <script> //JavaScript functions for the log in screen and nav bar
         function login(event) {
-            var username = document.getElementById("Username").value;
+            var username = document.getElementById("Username").value; //Getting the username (and password underneath) from the input box
             var password = document.getElementById("Password").value;
-            // PLACEHOLDERS
-            var validUsername = "Steve11";
-            var validPassword = "tory12";
-            //  var validUsername = "John";
-            if (username === validUsername && password === validPassword) {
-                document.getElementById("login").style.display = "none";
-                document.getElementById("ActualPage").style.display = "block";
-                event.preventDefault();
-                document.getElementById("DefaultSection").click();
+            var validusername = "CompanyName"; 
+            var validpassword = "Password";
+            if (username === validusername && password === validpassword) { //Validating user and password to access main application
+                document.getElementById("login").style.display = "none"; //Hiding the log in form
+                document.getElementById("ActualPage").style.display = "block"; //Revealing the main content of the page
+                event.preventDefault(); //Makes the page not revert back to login screen instantly
+                document.getElementById("DefaultSection").click(); //Sets the Storage section to be the default on log in
             } else {
-                alert("Invalid username or password.");
+                alert("Invalid username or password."); //Standard alert for if credentials are incorrect
             }
         }
 
-        function Section(event, Sec) {
-            var i, navcontent, navigation;
+        function Section(event, Sec) { //Function to travese the SPA
+            var i, navcontent; //Setting our variables
 
-            navcontent = document.getElementsByClassName("navcontent");
-            for (i = 0; i < navcontent.length; i++) {
-                navcontent[i].style.display = "none";
+            navcontent = document.getElementsByClassName("navcontent"); //Gets the sections which have been allocated the class 'navcontent'
+            for (i = 0; i < navcontent.length; i++) { //Loop through each one
+                navcontent[i].style.display = "none"; //Hiding the sections
             }
 
-            navigation = document.getElementsByClassName("navigation");
-            for (i = 0; i < navigation.length; i++) {
-                navigation[i].className = navigation[i].className.replace(" active", "");
-            }
-
-            document.getElementById(Sec).style.display = "block";
-            event.currentTarget.className += " active";
+            document.getElementById(Sec).style.display = "block"; //'Block' is block style of display not block from view - so this is setting the clicked section to be displayed
         }
+        function Append(event) {
+            event.preventDefault(); //Stops page from refreshing on button press
+            if (((document.getElementById('newsite').value === "") || (document.getElementById('newuser').value === "") || (document.getElementById('newpassword').value === ""))) { //Implementing data validation. No empty fields allowed
+                alert("Please enter data into all fields"); //Alert in the case of an empty input
+            }
+            else { //Else carry on with Append function
+                var NewCredential = {
+                    Site: document.getElementById('newsite').value, //Get value at 'newsite' inpute
+                    UsernameorEmail: document.getElementById('newuser').value, //Get value at 'newuser' inpute
+                    Password: document.getElementById('newpassword').value //Get value at 'newpassword' inpute
+                };
+                var key = document.getElementById('jsonpass').value.trim(); //Select jsonpass input, take the value. Trim incase of user input leading or trailing space
+                data[key].push(NewCredential); // Append the new credential
+                writetable(data[key]); //Key nessacary else the array it appends to is blank
+            }
+        }
+        function Save(data, filename = 'data.json') { //data.json default file name
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }); //data turned into a string - JSON type specified. Using Javascript blob object
+            const url = URL.createObjectURL(blob); //Create URL for the blob
+            var Downloadlink = document.createElement('a'); //Create anchor element
+            Downloadlink.href = url; //Blob url gets href attribute
+            Downloadlink.download = filename; 
+            document.body.appendChild(Downloadlink); // Link added to body of document
+            Downloadlink.click(); // Simulate click to start download
+            document.body.removeChild(Downloadlink); // Remove the link after downloading
+        }
+
+        document.getElementById('save').addEventListener('click', function () { 
+            var filename = 'passwords-' + new Date().toISOString().replace(/[:.]/g, '-') + '.json'; //Setting the download file name to the current time and date with "passwords" prefix
+            Save(data, filename); // Call the save function with the new filename
+        }); 
+
+
+
     </script>
 
 </html>

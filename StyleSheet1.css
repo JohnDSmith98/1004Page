@@ -180,3 +180,8 @@ input {
     width: auto;
     background-color: white;
 }
+.footer{
+    position: fixed;
+    left: 160px;
+    bottom: 30px;
+}
