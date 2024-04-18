@@ -1,5 +1,3 @@
-*Please NOTE - The final HTML file containing my SPA for marking is 'StoragePage.html'. The others were created in my solution for testing purposes when adding features to my project. Thank you.
-
 COMP1004 - Computing Practice
 
 
